@@ -42,7 +42,7 @@ class TaskApiService extends SBase
                     ->setUpdated(new \DateTime())
                     ->setTitle($datas['title'])
                     ->setDescription($datas['description'])
-                    ->setStatus($datas['status'])  ;
+                    ->setStatus(intval($datas['status']))  ;
 
             }else {
                 # code...
@@ -57,7 +57,7 @@ class TaskApiService extends SBase
                 ->setCreated(new \DateTime())
                 ->setTitle($datas['title'])
                 ->setDescription($datas['description'])
-                ->setStatus($datas['status'])  ;
+                ->setStatus(intval($datas['status']))  ;
 
         }
 
