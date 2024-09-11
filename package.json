@@ -23,8 +23,11 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@vue/runtime-dom": "^3.5.4",
         "axios": "^1.7.7",
+        "boostrap": "^2.0.0",
         "bootstrap": "^5.3.3",
-        "bootstrap-vue": "^2.23.1"
+        "bootstrap-vue": "^2.23.1",
+        "vue-compat": "^0.0.1"
     }
 }
