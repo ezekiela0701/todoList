@@ -1,1 +1,0 @@
-echo "<?php phpinfo(); ?>" | sudo tee /media/lida/Nouveau\ nom8/projets/sf-vue/todoList/todoList/

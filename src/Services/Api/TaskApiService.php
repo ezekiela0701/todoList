@@ -40,29 +40,42 @@ class TaskApiService extends SBase
 
         $datas          = $this->getPostedData($request) ;
 
-        // $idTheproperty  = $datas['idTheproperty'] ;
-        // $comment        = $datas['comment'] ;
+        $idTask  = isset($datas['idTask']) ? $datas['idTask'] : null ;
 
-        $theproperty    = $this->getRepository(TheProperty::class)->findOneBy(['id' => $idTheproperty]) ;
+        if ($idTask != null) {
+            # code...
+            $task    = $this->getRepository(Tasks::class)->findOneBy(['id' => $idTask]) ;
 
-        if($theproperty){
+            if($task){
 
-            $abuse = new Abuse() ;
+                $task
+                    ->setUpdated(new \DateTime())
+                    ->setTitle($datas['title'])
+                    ->setDescription($datas['description'])
+                    ->setStatus($datas['status'])  ;
 
-            $abuse->setCreated(new \DateTime())
-                ->setComment($comment)
-                ->setTheproperty($theproperty)
-                ->setUser($currentUser) ;
+            }else {
+                # code...
+                return $this->jsonResponseNotFound("No result found") ;
+            }
 
-            $this->save($abuse) ;
+        }else {
+            # code...
+            $task = new Tasks() ;
 
-            $datas = $this->serialize($abuse, 'json' , ['groups' => 'syndicdocumentcomment:read' ]);
-            
-            return $this->jsonResponseOk($datas , "Abuse send to the administrator" ) ;
+            $task
+                ->setCreated(new \DateTime())
+                ->setTitle($datas['title'])
+                ->setDescription($datas['description'])
+                ->setStatus($datas['status'])  ;
 
         }
 
-        return $this->jsonResponseNotFound("No result found") ;
+            $this->save($task) ;
+
+            $datas = $this->serialize($task, 'json' , ["withGroups"=>"tasks:read"]);
+            
+            return $this->jsonResponseOk($datas , "Succes changing information task" ) ;
 
     }
 

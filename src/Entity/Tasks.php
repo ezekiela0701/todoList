@@ -28,8 +28,8 @@ class Tasks
     #[ORM\Column(nullable: true)]
     private ?int $status = null;
 
-    #[ORM\Column]
-    private ?int $updated = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updated = null;
 
     public function getId(): ?int
     {
@@ -84,15 +84,16 @@ class Tasks
         return $this;
     }
 
-    public function getUpdated(): ?int
+    public function getUpdated(): ?\DateTimeInterface
     {
         return $this->updated;
     }
 
-    public function setUpdated(int $updated): static
+    public function setUpdated(?\DateTimeInterface $updated): static
     {
         $this->updated = $updated;
 
         return $this;
     }
+
 }

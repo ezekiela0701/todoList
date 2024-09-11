@@ -30,7 +30,7 @@ class TaskApiController extends AbstractController
     }
     
     #[Route('/add', name: 'add')]
-    public function add(): Response
+    public function add(Request $request): Response
     {
 
         return $this->taskApiService->add($request) ; 
