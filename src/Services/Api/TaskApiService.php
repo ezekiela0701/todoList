@@ -7,20 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TaskApiService extends SBase
 {
-    
-    // protected $property;
-
-    // public function __construct()
-    // {
-        
-    //     $this->utils = $utils ;
-
-    // }
 
     public function list(Request $request)
     {
 
-        // $alertLists     = $this->getRepository(Tasks::class)->findBy(['user' => $currentUser]) ;
         $taskLists     = $this->getRepository(Tasks::class)->findAll() ;
 
         if($taskLists){
