@@ -2,14 +2,26 @@
 
 #### Clone le projet ####
 
-    git clone 
+    git clone https://github.com/ezekiela0701/todoList.git
 
-#### Lancement docker ####
+#### basculer branch develop et install composant ####
 
-    docker compose up --build
-    docker compose up -d
+    git checkout develop
 
+    composer install
 
-    Frontend Vue.js : Accède à l’application Vue.js via http://localhost:8082
-    Backend Symfony : Accède à l’API Symfony via http://localhost:8000/api et à l’interface Vue.js via http://localhost:8000/app
-    phpMyAdmin : Accède à phpMyAdmin via http://localhost:8081
+    yarn add
+
+#### creer la base de données ####
+
+    php bin/console doctrine:database:create
+
+    php bin/console d:s:u -f
+
+#### Lancer server vuejs ####
+
+    yarn encore dev-server 
+
+#### Creer le vhost de symfony ####
+le mieux c'est d'utiliser un vhost mais vous pouvez lancer aussi php bin/console server:run
+
