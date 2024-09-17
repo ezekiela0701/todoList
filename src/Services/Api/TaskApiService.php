@@ -11,7 +11,7 @@ class TaskApiService extends SBase
     public function list(Request $request)
     {
 
-        $taskLists     = $this->getRepository(Tasks::class)->findAll() ;
+        $taskLists     = $this->getRepository(Tasks::class)->findBy([] , ['status'=>'DESC']) ;
 
         if($taskLists){
             

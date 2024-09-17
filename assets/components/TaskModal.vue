@@ -6,8 +6,8 @@
       <form @submit.prevent="saveTask">
         <input type="hidden" v-model="taskData.idTask" />
         <div class="form-group">
-          <label for="taskTitle">Title</label>
-          <input id="taskTitle" v-model="taskData.title" type="text" placeholder="Title" required />
+          <label for="taskTitle">Titre</label>
+          <input id="taskTitle" v-model="taskData.title" type="text" placeholder="Titre" required />
         </div>
         <div class="form-group">
           <label for="taskDescription">Description</label>
@@ -16,9 +16,9 @@
         <div class="form-group">
           <label for="taskStatus">Status</label>
           <select id="taskStatus" v-model="taskData.status">
-            <option value="3">To Do</option>
-            <option value="2">In Progress</option>
-            <option value="1">Done</option>
+            <option value="3">A faire</option>
+            <option value="2">En cours</option>
+            <option value="1">Fait</option>
           </select>
         </div>
         <button type="submit">Save</button>
