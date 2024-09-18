@@ -4,6 +4,14 @@
         <button class="add-task-button" @click="openModal">Add Task</button>
         <!-- Table and other content -->
       </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          v-model="searchTerm"
+          placeholder="Search tasks..."
+          @input="searchTasks"
+        />
+      </div>
       <table class="table">
         <thead>
           <tr>
@@ -61,6 +69,18 @@
           console.error('Error fetching tasks:', error);
         }
       },
+    async searchTasks() {
+      if (this.searchTerm.length > 0) {
+        try {
+          const response = await axios.get(`/list?key=${this.searchTerm}`);
+          this.tasks = response.data.data;
+        } catch (error) {
+          console.error('Error searching tasks:', error);
+        }
+      } else {
+        this.fetchTasks(); // Reset to original list if search is cleared
+      }
+    },
       openModal(task = null) {
         this.currentTask = task;
         this.showModal = true;
@@ -103,6 +123,16 @@
   </script>
   
   <style scoped>
+  .search-bar {
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
   .badge {
     padding: 5px 10px;
     border-radius: 5px;
