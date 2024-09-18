@@ -40,4 +40,15 @@ class TasksRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    
+    function findSearch($key) {
+
+        return $this->createQueryBuilder('t')
+               ->andWhere('t.title LIKE :val OR t.description LIKE :val ' )
+               ->setParameter('val', '%'.$key.'%')
+               ->getQuery()
+               ->getResult()
+           ;
+        
+    }
 }

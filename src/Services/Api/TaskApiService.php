@@ -11,7 +11,18 @@ class TaskApiService extends SBase
     public function list(Request $request)
     {
 
-        $taskLists     = $this->getRepository(Tasks::class)->findBy([] , ['status'=>'DESC']) ;
+        $keySearch = $request->query->get("key") ?  $request->query->get("key") : null;
+
+        if ($keySearch == null) {
+            # code...
+            $taskLists     = $this->getRepository(Tasks::class)->findBy([] , ['status'=>'DESC']) ;
+
+        }else {
+            # code...
+            // $taskLists     = $this->getRepository(Tasks::class)->findBy([] , ['status'=>'DESC']) ;
+            $taskLists     = $this->getRepository(Tasks::class)->findSearch($keySearch) ;
+
+        }
 
         if($taskLists){
             
@@ -68,5 +79,23 @@ class TaskApiService extends SBase
             return $this->jsonResponseOk($datas , "Succes changing information task" ) ;
 
     }
+
+    
+    // public function search(Request $request)
+    // {
+
+    //     $taskLists     = $this->getRepository(Tasks::class)->findBy([] , ['status'=>'DESC']) ;
+
+    //     if($taskLists){
+            
+    //         $datas = $this->serialize($taskLists, 'json', ["withGroups"=>"tasks:read"]);
+
+    //         return $this->jsonResponseOk($datas , "List task terminated" ) ;
+
+    //     }
+        
+    //     return $this->jsonResponseNotFound("No result found") ;
+
+    // }
 
 }

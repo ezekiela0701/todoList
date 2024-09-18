@@ -36,4 +36,11 @@ class TaskApiController extends AbstractController
         return $this->taskApiService->add($request) ; 
     }
 
+    // #[Route('/search', name: 'search')]
+    // public function search(Request $request): Response
+    // {
+
+    //     return $this->taskApiService->add($request) ; 
+    // }
+
 }
